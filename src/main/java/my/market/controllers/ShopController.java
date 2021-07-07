@@ -37,13 +37,6 @@ public class ShopController {
         return "shop-page";
     }
 
-    @GetMapping("/ajax")
-    public String ajaxShopPage(Model model) {
-       // List<Product> allProducts = productService.getAllProducts();
-       // model.addAttribute("products", allProducts);
-        return "shop-page-ajax";
-    }
-
     @GetMapping("/cart/add/{id}")
     public String addProductToCart(Model model, @PathVariable("id") Long id, HttpServletRequest httpServletRequest) {
         shoppingCartService.addToCart(httpServletRequest.getSession(), id);

@@ -19,14 +19,14 @@
 
 <body>
 
-<div th:replace="~{navigation :: navi(Cart)}"/>
+<div th:replace="~{navigation :: navi(ShoppingCart)}"/>
 
 <div class="container">
     <br>
     <h1>Корзина</h1>
 
     <div th:if="${cart.getItems().size() > 0}" >
-        <table class="table table-hover">
+        <table class="table table-dark table-striped">
             <thead class="thead-dark">
             <tr>
                 <th>№</th>
@@ -57,8 +57,8 @@
         </table>
         <br>
 
-        <a sec:authorize="isAuthenticated()" type="button" class="btn btn-primary" th:href="@{/shop/order/fill}">Продолжить оформление заказа</a>
-        <a sec:authorize="isAnonymous()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#authWarningModal">Продолжить оформление заказа</a>
+        <a sec:authorize="isAuthenticated()" type="button" class="btn btn-outline-dark" th:href="@{/shop/order/fill}">Продолжить оформление заказа</a>
+        <a sec:authorize="isAnonymous()" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#authWarningModal">Продолжить оформление заказа</a>
 
     </div>
     <div th:unless="${cart.getItems().size() > 0}" >
