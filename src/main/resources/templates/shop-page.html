@@ -44,6 +44,14 @@
             <td/>
         </tr>
     </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li th:each="i : ${#numbers.sequence(1, totalPage, 1)}">
+                <a th:class="page-link" th:text="${i}" th:classappend="${page == i ? 'active' : ''}" th:href="@{'/shop/?page=' + ${i}}"></a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 </body>
