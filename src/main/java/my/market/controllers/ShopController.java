@@ -69,11 +69,11 @@ public class ShopController {
         String referrer = httpServletRequest.getHeader("referer");
         return "redirect:" + referrer;
     }
-
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(Message message, HttpServletRequest httpServletRequest) throws Exception {
-//        Thread.sleep(1000); // simulated delay
-        return new Greeting( shoppingCartService.getCurrentCart(httpServletRequest.getSession()).getItems().size()+" товар(а/ов)");
-    }
+//
+//    @MessageMapping("/hello")
+//    @SendTo("/topic/greetings")
+//    public Greeting greeting(Message message, HttpServletRequest httpServletRequest) throws Exception {
+////        Thread.sleep(1000); // simulated delay
+//        return new Greeting( shoppingCartService.getCurrentCart(httpServletRequest.getSession()).getItems().size()+" товар(а/ов)");
+//    }
 }
