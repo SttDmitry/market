@@ -69,6 +69,7 @@ public class ShopController {
         String referrer = httpServletRequest.getHeader("referer");
         return "redirect:" + referrer;
     }
+
 //
 //    @MessageMapping("/hello")
 //    @SendTo("/topic/greetings")

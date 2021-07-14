@@ -1,19 +1,37 @@
 package my.market.services;
 
+import my.market.entities.OrderItem;
 import my.market.entities.Product;
+import my.market.entities.User;
+import my.market.repositories.OrderItemRepository;
+import my.market.repositories.UserRepository;
 import my.market.utils.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Service
 public class ShoppingCartService {
     private ProductService productService;
+    private UserRepository userRepository;
+    private OrderItemRepository orderItemRepository;
 
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
+    }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setOrderItemRepository(OrderItemRepository orderItemRepository) {
+        this.orderItemRepository = orderItemRepository;
     }
 
     public ShoppingCart getCurrentCart(HttpSession session) {
@@ -62,5 +80,13 @@ public class ShoppingCartService {
 
     public double getTotalCost(HttpSession session) {
         return getCurrentCart(session).getTotalCost();
+    }
+
+    public void saveCart(ShoppingCart cart, Principal user) {
+        User tempUser = userRepository.findOneByUserName(user.toString());
+        for (OrderItem oi: cart.getItems()) {
+            oi.setUser(tempUser);
+            orderItemRepository.save(oi);
+        }
     }
 }

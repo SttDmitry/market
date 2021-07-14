@@ -3,6 +3,7 @@ package my.market.utils;
 import lombok.Data;
 import my.market.entities.OrderItem;
 import my.market.entities.Product;
+import my.market.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
