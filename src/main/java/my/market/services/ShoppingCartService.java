@@ -6,12 +6,11 @@ import my.market.entities.User;
 import my.market.repositories.OrderItemRepository;
 import my.market.repositories.UserRepository;
 import my.market.utils.ShoppingCart;
+import netscape.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
 
 @Service
 public class ShoppingCartService {
@@ -83,7 +82,7 @@ public class ShoppingCartService {
     }
 
     public void saveCart(ShoppingCart cart, Principal user) {
-        User tempUser = userRepository.findOneByUserName(user.toString());
+        User tempUser = userRepository.findOneByUserName(user.getNickname());
         for (OrderItem oi: cart.getItems()) {
             oi.setUser(tempUser);
             orderItemRepository.save(oi);
