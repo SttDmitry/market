@@ -17,7 +17,7 @@
     <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
 </head>
 
-<body>
+<body onload="connect()">
 
 <div th:replace="~{navigation :: navi(ShoppingCart)}"/>
 
@@ -45,7 +45,7 @@
                 <td th:text="${cartItem.quantity}"/>
                 <td th:text="${cartItem.totalPrice}"/>
                 <td>
-                    <a th:href="@{'/cart/remove/' + ${cartItem.product.id}}">Удалить</a>
+                    <a th:href="@{'/cart/remove/' + ${cartItem.product.id}}" onclick="sendName()">Удалить</a>
                 <td/>
             </tr>
             <tr>
