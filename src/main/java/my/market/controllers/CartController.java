@@ -4,10 +4,13 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+import my.market.entities.User;
 import my.market.services.ShoppingCartService;
 import my.market.utils.ShoppingCart;
 import netscape.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.http.HttpTrace;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +48,7 @@ public class CartController {
         return "redirect:" + referrer;
     }
 
-    @PostMapping("/order/fill")
+    @RequestMapping("/order/fill")
     public String orderFill(Model model, HttpServletRequest httpServletRequest) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -61,11 +64,11 @@ public class CartController {
             e.printStackTrace();
         }
         String referrer = httpServletRequest.getHeader("referer");
-        return "redirect:" + referrer;
+        return "redirect:/cart/order/save";
     }
 
-    @PostMapping("/order/save")
-    public String orderSave(Model model, HttpServletRequest httpServletRequest, Principal user) {
+    @RequestMapping("/order/save")
+    public String orderSave(Model model, HttpServletRequest httpServletRequest, HttpTrace.Principal user) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         try (Connection connection = factory.newConnection();
@@ -85,6 +88,6 @@ public class CartController {
             e.printStackTrace();
         }
         String referrer = httpServletRequest.getHeader("referer");
-        return "redirect:" + referrer;
+        return "cart-page";
     }
 }

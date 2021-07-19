@@ -6,8 +6,8 @@ import my.market.entities.User;
 import my.market.repositories.OrderItemRepository;
 import my.market.repositories.UserRepository;
 import my.market.utils.ShoppingCart;
-import netscape.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -81,8 +81,8 @@ public class ShoppingCartService {
         return getCurrentCart(session).getTotalCost();
     }
 
-    public void saveCart(ShoppingCart cart, Principal user) {
-        User tempUser = userRepository.findOneByUserName(user.getNickname());
+    public void saveCart(ShoppingCart cart, HttpTrace.Principal user) {
+        User tempUser = userRepository.findOneByUserName(user.getName());
         for (OrderItem oi: cart.getItems()) {
             oi.setUser(tempUser);
             orderItemRepository.save(oi);
