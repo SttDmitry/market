@@ -7,7 +7,6 @@ import my.market.repositories.OrderItemRepository;
 import my.market.repositories.UserRepository;
 import my.market.utils.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -81,10 +80,17 @@ public class ShoppingCartService {
         return getCurrentCart(session).getTotalCost();
     }
 
-    public void saveCart(ShoppingCart cart, HttpTrace.Principal user) {
-        User tempUser = userRepository.findOneByUserName(user.getName());
+    public void saveCart(ShoppingCart cart) {
+        User user = new User();
+        user.setId(1L);
+        user.setUserName("Alex");
+        user.setPassword("123");
+        user.setFirstName("Alex");
+        user.setLastName("Alex");
+        user.setEmail("111@gmail.com");
+        user.setPhone("888");
         for (OrderItem oi: cart.getItems()) {
-            oi.setUser(tempUser);
+            oi.setUser(user);
             orderItemRepository.save(oi);
         }
     }

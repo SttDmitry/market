@@ -70,7 +70,7 @@ public class ShopController {
         return "redirect:" + referrer;
     }
 
-//
+
 //    @MessageMapping("/hello")
 //    @SendTo("/topic/greetings")
 //    public Greeting greeting(Message message, HttpServletRequest httpServletRequest) throws Exception {

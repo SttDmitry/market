@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @org.aspectj.lang.annotation.Aspect
 @Component
 public class Aspect {
-    @Before("execution(public * my.market.controllers.CartController.*(..))")
+    @Before("execution(public * my.market.controllers.CartControllerImpl.*(..))")
     public void allMethodsCallsLogging() {
-        System.out.println("В классе CartController вызывают метод");
+        System.out.println("В классе CartControllerImpl вызывают метод");
     }
 }

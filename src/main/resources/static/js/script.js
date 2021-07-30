@@ -15,7 +15,7 @@ function connect() {
 
 function sendName() {
     var name = 'товар';
-    stompClient.send("/market/hello", {}, JSON.stringify({ 'name': name }));
+    stompClient.send("/hello", {}, JSON.stringify({ 'name': name }));
 }
 
 function showGreeting(message) {
