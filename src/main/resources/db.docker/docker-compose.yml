@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql:8.0.17
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: newmarket
+      MYSQL_ROOT_PASSWORD: newpass
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+
+#  mysql-development:
+#    image: mysql:8.0.17
+#    volumes:
+#      - dbdata:/var/lib/mysql
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: secret
+#      MYSQL_DATABASE: market
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: secret
+#    ports:
+#      - "3306:3306"
