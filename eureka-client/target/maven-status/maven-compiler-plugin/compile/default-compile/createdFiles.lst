@@ -1,0 +1,12 @@
+com\flamexander\cloud\client\ExcelReader.class
+com\flamexander\cloud\client\OrderItem.class
+com\flamexander\cloud\client\OrderItemRepository.class
+com\flamexander\cloud\client\ShoppingCart.class
+com\flamexander\cloud\client\Category.class
+com\flamexander\cloud\client\CartControllerImpl.class
+com\flamexander\cloud\client\Role.class
+com\flamexander\cloud\client\ShoppingCartService.class
+com\flamexander\cloud\client\CartController.class
+com\flamexander\cloud\client\Product.class
+com\flamexander\cloud\client\GeekEurekaClientApplication.class
+com\flamexander\cloud\client\User.class
