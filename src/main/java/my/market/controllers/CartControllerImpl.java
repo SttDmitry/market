@@ -23,8 +23,8 @@ public class CartControllerImpl {
     private final static String QUEUE_NAME = "hello";
     private ShoppingCartService shoppingCartService;
 
-    @Autowired
-    CartController cloudCartController;
+//    @Autowired
+//    CartController cloudCartController;
 
     @Autowired
     public void setShoppingCartService(ShoppingCartService shoppingCartService) {
@@ -86,7 +86,7 @@ public class CartControllerImpl {
 //        }
 //        String referrer = httpServletRequest.getHeader("referer");
         ShoppingCart cart = shoppingCartService.getCurrentCart(httpSession);
-        cloudCartController.save(cart);
+        shoppingCartService.saveCart(cart);
 //        shoppingCartService.saveCart(cart);
         return "redirect:/cart";
     }
