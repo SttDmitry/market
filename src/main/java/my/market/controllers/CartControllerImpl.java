@@ -23,8 +23,12 @@ public class CartControllerImpl {
     private final static String QUEUE_NAME = "hello";
     private ShoppingCartService shoppingCartService;
 
+    private CartController cloudCartController;
+
     @Autowired
-    CartController cloudCartController;
+    public void setCartController(CartController cartController) {
+        this.cloudCartController = cartController;
+    }
 
     @Autowired
     public void setShoppingCartService(ShoppingCartService shoppingCartService) {
